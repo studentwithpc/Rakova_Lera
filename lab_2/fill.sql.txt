@@ -1,0 +1,68 @@
+connect 'D:\Litpub\ONE.fdb'
+user 'SYSDBA' password 'masterkey';
+
+insert into BOOK(ID_BOOK,Books_name,Books_rating,Numder_of_pages ) values (1,'Flower of god',8.3,453);
+insert into BOOK(ID_BOOK,Books_name,Books_rating,Numder_of_pages ) values (2,'Lord of the Rings',9.7,1235);
+insert into BOOK(ID_BOOK,Books_name,Books_rating,Numder_of_pages ) values (3,'Good work',3.5,321);
+insert into BOOK(ID_BOOK,Books_name,Books_rating,Numder_of_pages ) values (4,'I am Robot',8.9,2679);
+insert into BOOK(ID_BOOK,Books_name,Books_rating,Numder_of_pages ) values (5,'Cook together ',5.3,128);
+
+insert into  AUTHOR(ID_AUTHOR,Autors_name,date_of_born)  values (1,'A.B. Ivanov', '1969-10-12');
+insert into  AUTHOR(ID_AUTHOR,Autors_name,date_of_born)  values (2,'B.B. Ivanov', '1975-11-14');
+insert into  AUTHOR(ID_AUTHOR,Autors_name,date_of_born)  values (3,'J.R.R. Tolkien', '1892-01-03');
+insert into  AUTHOR(ID_AUTHOR,Autors_name,date_of_born)  values (4,'A.K. Litvinov', '1982-9-25');
+insert into  AUTHOR(ID_AUTHOR,Autors_name,date_of_born)  values (5,'I. Asimov', '1902-01-02');
+insert into  AUTHOR(ID_AUTHOR,Autors_name,date_of_born)  values (6,'B.B. Kotova', '1956-08-12');
+
+
+insert into REDACTOR(ID_REDACTOR,redactor_name,experience_red)values(1,'A.A. Trovlev', 5);
+insert into REDACTOR(ID_REDACTOR,redactor_name,experience_red)values(2,'A.C. Gotov', 17);
+insert into REDACTOR(ID_REDACTOR,redactor_name,experience_red)values(3,'D.E. Kotov', 1);
+
+insert into GENRE(ID_GENRE,GENRE_NAME) values(1,'Fiction');
+insert into GENRE(ID_GENRE,GENRE_NAME) values(2,'Doc');
+insert into GENRE(ID_GENRE,GENRE_NAME) values(3,'Drama');
+
+insert into EDITION(ID_EDITION,NUMBER_OF_COPY,ID_BOOK,NUMBER_OF_ISSUE) values(1,20000,3,2);
+insert into EDITION(ID_EDITION,NUMBER_OF_COPY,ID_BOOK,NUMBER_OF_ISSUE) values(2,50000,1,1);
+insert into EDITION(ID_EDITION,NUMBER_OF_COPY,ID_BOOK,NUMBER_OF_ISSUE) values(3,100000,4,5);
+insert into EDITION(ID_EDITION,NUMBER_OF_COPY,ID_BOOK,NUMBER_OF_ISSUE) values(4,10000,2,2);
+
+insert into RESELLER(ID_RESELLER,resseler_name,director_name,phone_number) values(1,'ABGroup','A.B. Igorev', 6543234);
+insert into RESELLER(ID_RESELLER,resseler_name,director_name,phone_number) values(2,'Legend of fiction','C.K. Mohov', 6579230);
+insert into RESELLER(ID_RESELLER,resseler_name,director_name,phone_number) values(3,'PopularBook','A.H. Vasin', 6598981);
+
+insert into RATING_SALARY(ID_GET,ID_AUTHOR,rating_author,experience_author,salary_author,prize_was) values(1,1,4.2,13,35000, 'Never before');
+insert into RATING_SALARY(ID_GET,ID_AUTHOR,rating_author,experience_author,salary_author,prize_was) values(2,2,4.7,8,47000, 'Last in September');
+insert into RATING_SALARY(ID_GET,ID_AUTHOR,rating_author,experience_author,salary_author,prize_was) values(3,4,5.0,15,89000, 'Last in October');
+insert into RATING_SALARY(ID_GET,ID_AUTHOR,rating_author,experience_author,salary_author,prize_was) values(4,1,3.5,4,21000, 'Never before');
+
+insert into PRIZE(ID_PRIZE,ID_GET,ID_EDITION,prize_sum) values(1,2,1,5000);
+insert into PRIZE(ID_PRIZE,ID_GET,ID_EDITION,prize_sum) values(2,3,3,13000);
+insert into AUTHOR_BOOK(ID_COMAB,ID_AUTHOR,ID_BOOK) values(1,1,1);
+insert into AUTHOR_BOOK(ID_COMAB,ID_AUTHOR,ID_BOOK) values(2,1,2);
+insert into AUTHOR_BOOK(ID_COMAB,ID_AUTHOR,ID_BOOK) values(3,2,3);
+insert into AUTHOR_BOOK(ID_COMAB,ID_AUTHOR,ID_BOOK) values(4,3,4);
+insert into AUTHOR_BOOK(ID_COMAB,ID_AUTHOR,ID_BOOK) values(5,4,5);
+insert into AUTHOR_BOOK(ID_COMAB,ID_AUTHOR,ID_BOOK) values(6,5,6);
+
+insert into REDACTOR_BOOK(ID_COMRB,ID_REDACTOR,ID_BOOK) values(1,1,1);
+insert into REDACTOR_BOOK(ID_COMRB,ID_REDACTOR,ID_BOOK) values(2,2,2);
+insert into REDACTOR_BOOK(ID_COMRB,ID_REDACTOR,ID_BOOK) values(3,3,3);
+insert into REDACTOR_BOOK(ID_COMRB,ID_REDACTOR,ID_BOOK) values(4,2,4);
+insert into REDACTOR_BOOK(ID_COMRB,ID_REDACTOR,ID_BOOK) values(5,2,5);
+
+insert into GENRE_BOOK(ID_COMGB,ID_GENRE,ID_BOOK) values(1,3,1);
+insert into GENRE_BOOK(ID_COMGB,ID_GENRE,ID_BOOK) values(2,1,1);
+insert into GENRE_BOOK(ID_COMGB,ID_GENRE,ID_BOOK) values(3,3,2);
+insert into GENRE_BOOK(ID_COMGB,ID_GENRE,ID_BOOK) values(4,3,3);
+insert into GENRE_BOOK(ID_COMGB,ID_GENRE,ID_BOOK) values(5,1,4);
+insert into GENRE_BOOK(ID_COMGB,ID_GENRE,ID_BOOK) values(6,2,5);
+
+insert into RESELLER_EDITION(ID_RESELLER,ID_EDITION,number_partcopy) values(1,1, 10000);
+insert into RESELLER_EDITION(ID_RESELLER,ID_EDITION,number_partcopy) values(2,3, 15000);
+insert into RESELLER_EDITION(ID_RESELLER,ID_EDITION,number_partcopy) values(3,2, 20000);
+insert into RESELLER_EDITION(ID_RESELLER,ID_EDITION,number_partcopy) values(2,4, 8000);
+insert into RESELLER_EDITION(ID_RESELLER,ID_EDITION,number_partcopy) values(3,2, 15000);
+
+

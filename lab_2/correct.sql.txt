@@ -1,0 +1,39 @@
+connect 'D:\Litpub\ONE.fdb'
+user 'SYSDBA' password 'masterkey';
+
+
+
+alter table  RATING_SALARY   add  prize_was varchar(255);
+
+create table  PRIZE(
+    ID_PRIZE int primary key
+    ,ID_GET int not null
+    ,ID_EDITION int not null
+    ,prize_sum int
+);
+
+
+   create table  RESELLER(
+    ID_RESELLER int primary key
+    ,resseler_name varchar(255)
+    ,director_name varchar(255)
+    ,phone_number int
+);
+
+create table  RESELLER_EDITION(
+    ID_RESELLER int not null
+    ,ID_EDITION int not null
+    ,number_partcopy int
+);
+
+alter table  PRIZE add constraint get_prize foreign key (ID_GET)
+references RATING_SALARY(ID_GET);
+
+alter table  PRIZE add constraint edition_prize foreign key (ID_EDITION)
+references EDITION(ID_EDITION);
+
+alter table  RESELLER_EDITION add constraint reseller_edition1 foreign key (ID_EDITION)
+references EDITION(ID_EDITION);
+
+alter table  RESELLER_EDITION add constraint reseller1_edition foreign key (ID_RESELLER)
+references RESELLER(ID_RESELLER);

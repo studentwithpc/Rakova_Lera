@@ -1,0 +1,88 @@
+connect 'D:\Litpub\ONE.fdb'
+user 'SYSDBA' password 'masterkey';
+
+drop database;
+
+create database 'D:\Litpub\ONE.fdb' user 'SYSDBA' password 'masterkey';
+
+connect 'D:\Litpub\ONE.fdb' user 'SYSDBA' password 'masterkey';
+
+create table BOOK(
+    ID_BOOK int primary key
+    ,Books_name varchar(255)
+    ,Books_rating float
+    ,Numder_of_pages int
+);
+
+create table  AUTHOR(
+    ID_AUTHOR int primary key
+    ,Autors_name varchar(255)
+    ,date_of_born date
+);
+
+
+create table  REDACTOR(
+    ID_REDACTOR int primary key
+    ,redactor_name varchar(255)
+    ,experience_red int
+);
+
+ create table  GENRE(
+    ID_GENRE int primary key
+    ,genre_name varchar(255)
+);
+
+ create table  AUTHOR_BOOK(
+    ID_COMAB int primary key
+    ,ID_AUTHOR int not null
+    ,ID_BOOK int not null
+);
+
+  create table  RATING_SALARY(
+    ID_GET int primary key
+    ,ID_AUTHOR int not null
+    ,rating_author float
+    ,experience_author int
+    ,salary_author int
+);
+
+  create table  EDITION(
+    ID_EDITION int primary key
+    ,number_of_copy int
+    ,ID_BOOK int not null
+    ,number_of_issue int
+);
+
+create table  REDACTOR_BOOK(
+    ID_COMRB int primary key
+    ,ID_REDACTOR int not null
+    ,ID_BOOK int not null
+);
+   create table  GENRE_BOOK(
+    ID_COMGB int primary key
+    ,ID_GENRE int not null
+    ,ID_BOOK int not null
+);
+  alter table  AUTHOR_BOOK add constraint com_authot_book1 foreign key (ID_BOOK)
+references BOOK(ID_BOOK);
+
+alter table  AUTHOR_BOOK add constraint com_authot1_book foreign key (ID_AUTHOR)
+references AUTHOR(ID_AUTHOR);
+
+ alter table  REDACTOR_BOOK add constraint com_red1_book foreign key (ID_REDACTOR)
+references REDACTOR(ID_REDACTOR);
+
+alter table  REDACTOR_BOOK add constraint com_red_book1 foreign key (ID_BOOK)
+references BOOK(ID_BOOK);
+
+alter table  GENRE_BOOK add constraint com_genre_book1 foreign key (ID_BOOK)
+references BOOK(ID_BOOK);
+
+alter table  GENRE_BOOK add constraint com_genre1_book foreign key (ID_GENRE)
+references GENRE(ID_GENRE);
+
+alter table  EDITION add constraint adition_book foreign key (ID_BOOK)
+references BOOK(ID_BOOK);
+
+ alter table  RATING_SALARY add constraint rating_author foreign key (ID_AUTHOR)
+references AUTHOR(ID_AUTHOR);
