@@ -1,0 +1,8 @@
+create view booksmaxauthors as select  first 3
+   book.books_name as NameB ,
+   COUNT(author.id_author) as NumA
+   from book, author ,   author_book
+where book.id_book = author_book.id_book  AND
+        author.id_author =author_book.id_author
+          group by book.books_name
+          order by NumA desc ;

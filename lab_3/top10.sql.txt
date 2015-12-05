@@ -1,0 +1,8 @@
+create view top10autor  as select   first 10
+  book.books_name as NameB, author.autors_name as NameA,
+ edition.number_of_copy as Nedition
+   from book, author , edition,  author_book
+  where book.id_book = author_book.id_book  AND
+        author.id_author =author_book.id_author AND
+        book.id_book = edition.id_book
+        order by Nedition desc;

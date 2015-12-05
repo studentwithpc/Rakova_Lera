@@ -1,0 +1,4 @@
+create procedure del_genre as
+begin
+    delete from GENRE where ID_GENRE not in (select ID_GENRE from genre_book);
+end;
