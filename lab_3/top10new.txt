@@ -1,10 +1,10 @@
-create view top10autor1  as select   first 10
-
+create view top10autor2  as select   first 10
   author.id_author ,
-  SUM(edition.number_of_copy) as Nedition
-   from book, author , edition,  author_book
+  SUM(edition.number_of_copy) as Nedition,
+  author.autors_name as Name
+  from book, author , edition,  author_book
   where book.id_book = author_book.id_book  AND
         author.id_author =author_book.id_author AND
         book.id_book = edition.id_book
-        group by author.id_author
+        group by author.id_author, author.autors_name
         order by Nedition desc;
