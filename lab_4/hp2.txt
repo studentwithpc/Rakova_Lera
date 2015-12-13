@@ -1,0 +1,45 @@
+create procedure new_edition(id_a int, new_genre int)
+returns(new_ed int)
+as
+declare variable gen_book int;
+declare variable rat_aut float;
+declare variable num_edit int;
+declare variable new_edit float default 0;
+begin
+ for select SUM(edition.number_of_copy)
+ from book, author , author_book , edition ,rating_salary
+where
+      book.id_book = author_book.id_book  AND
+      author.id_author = :id_a AND
+      rating_salary.id_author = :id_a AND
+      author_book.id_author =:id_a AND
+      book.id_book = edition.id_book
+         group by book.id_book
+     into :num_edit
+     do
+     begin
+           new_edit = num_edit;
+   end
+
+     for select genre.id_genre    from author, book , genre , genre_book , author_book
+     where
+     author.id_author = :id_a AND
+     author_book.id_author =:id_a AND
+     book.id_book = author_book.id_book  AND
+     book.id_book = genre_book.id_book and
+     genre.id_genre = genre_book.id_genre
+               into: gen_book
+               do
+               begin
+               if( gen_book=:new_genre) then
+               begin
+               new_edit = new_edit*1.5;
+               end
+               else if(gen_book<>:new_genre)  then
+               begin
+               new_edit = new_edit*0.5;
+               end
+               end
+             new_ed = new_edit;
+
+end

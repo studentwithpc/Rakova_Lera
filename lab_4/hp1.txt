@@ -1,0 +1,22 @@
+drop procedure salary_edition;
+create procedure salary_edition(min_date date, max_date date)
+returns(ID int, NAME varchar(255), sal_ed float)
+as
+declare variable sum_sal int;
+declare variable num_edition int;
+declare variable salary_edit float default 0;
+begin
+for select author.id_author, author.autors_name,
+ ((SUM(EDITION.number_of_copy)/COUNT(author.id_author))/rating_salary.salary_author) as salary_edit
+ from book, author ,   author_book , edition ,rating_salary
+where
+      book.id_book = author_book.id_book  AND
+      author.id_author =rating_salary.id_author AND
+      author.id_author =author_book.id_author AND
+        book.id_book = edition.id_book AND
+    edition.date_of_edition between :min_date and :max_date
+    group by author.id_author, author.autors_name ,
+     rating_salary.salary_author
+    order by author.id_author into :ID,:NAME ,:sal_ed
+    do suspend ;
+end
