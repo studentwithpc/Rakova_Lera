@@ -1,0 +1,10 @@
+--create generator increment;
+--set generator increment to GENRE.id_genre;
+
+drop trigger auto_fill;
+
+create trigger auto_fill for GENRE before insert
+as
+begin
+ new.id_genre = gen_id(increment,1);
+ end;

@@ -1,0 +1,27 @@
+
+create trigger add_prize1 for prize active after insert
+as
+declare variable num_edit int;
+declare variable num_iss int;
+declare variable id_pr int;
+
+declare variable addprize float;
+begin
+select edition.number_of_copy, prize.id_prize from edition , prize
+    where  new.id_prize = prize.id_prize and
+            new.id_edition = prize.id_edition    and
+            new.id_author = prize.id_author and
+         prize.id_edition= edition.id_edition
+    into :num_edit,:id_pr;
+
+    select edition.number_of_issue from edition, prize
+    where new.id_prize = prize.id_prize and
+         new.id_edition = prize.id_edition  and
+         new.id_author = prize.id_author and
+         prize.id_edition= edition.id_edition
+    into :num_iss;
+
+addprize = (num_iss+num_iss*0.5)*(num_edit/100000*2);
+execute procedure add_pr (addprize, id_pr);
+
+end

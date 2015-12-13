@@ -1,0 +1,9 @@
+create exception error1 'Error deleting author';
+drop trigger check_cel;
+
+create trigger check_cel for author before delete or update
+as
+begin
+ if (OLD.id_author in (select prize.id_author from prize)) then
+ exception error1;
+end;

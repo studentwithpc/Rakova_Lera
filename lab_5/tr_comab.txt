@@ -1,0 +1,18 @@
+drop trigger CONECT_AB;
+CREATE  trigger CONECT_AB FOR AUTHOR_BOOK BEFORE INSERT
+as
+declare variable id_b int;
+declare variable cal int default 0;
+declare variable id_com int;
+begin
+ id_com =new.id_comab;
+select author_book.id_comab from author_book
+    where author_book.id_author=new.id_author and
+        author_book.id_book = new.id_book
+    into :cal;
+
+ if (cal<0) then exception error2;
+    else if (cal=0) then new.id_comab=:id_com;
+
+
+end
